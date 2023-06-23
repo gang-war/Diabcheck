@@ -2,3 +2,4 @@ Flask==1.0.2
 pandas
 numpy
 scikit_learn
+gunicorn==20.1.0
