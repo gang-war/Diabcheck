@@ -97,28 +97,30 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.20, rand
 # In[25]:
 
 
-from sklearn.svm import SVC
-svc = SVC(kernel = 'linear', random_state = 42)
-svc.fit(X_train, Y_train)
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors = 24, metric = 'minkowski', p = 2)
+knn.fit(X_train, Y_train)
 
 
 # In[26]:
 
 
-svc.score(X_test, Y_test)
+knn.score(X_test, Y_test)
 
 
 # In[27]:
 
 
-Y_pred = svc.predict(X_test)
+Y_pred = knn.predict(X_test)
 
 
 
 
 
-pickle.dump(svc, open('model.pkl','wb'))
-model = pickle.load(open('model.pkl','rb'))
-#print(model.predict(sc.transform(np.array([[86, 66, 26.6, 31]]))))
+pickle.dump(knn, open('./model.pkl','wb'))
+model = pickle.load(open('./model.pkl','rb'))
+print("Model exported")
+print(model.predict(X_test))
+# print(model.predict(sc.transform(np.array([[86, 66, 26.6, 31]]))))
 
 
